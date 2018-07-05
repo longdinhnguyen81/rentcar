@@ -14,6 +14,9 @@
 
      <h1><span style="color:orange;font-size:36px"><span style="color:#57A806">Trang quản trị</span> Hoàng Phúc</span></h1>
      <?php
+        if(isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESSION['id']) && isset($_SESSION['active']) & isset($_SESSION['fullname'])){
+          header('location:/admin/');
+        }
         if(isset($_GET['msg'])){
           echo '<span style="color:orange">' . $_GET['msg'] . '</span>';
         }
@@ -30,14 +33,16 @@
             $password = $arUser['adpass'];
             $uid      = $arUser['id'];
             $fname    = $arUser['adfullname'];
+            $active   = $arUser['active'];
             if($name == $username && $pass == $password){ //Đăng nhập đúng
               $_SESSION['id']       = $uid;
               $_SESSION['fullname'] = $fname;
               $_SESSION['username'] = $username;
               $_SESSION['password'] = $password;
+              $_SESSION['active'] = $active;
               header('location:/admin/');
             }else{ //Đăng nhập sai
-              $fail = "Login failed 1";
+              $fail = "Login failed";
             }
           }
         }if(isset($fail)){

@@ -1,22 +1,21 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/util/DBConnectionUtil.php'; ?>
 <?php
 	// lấy các biến từ ajax truyền sang
-	$cid = $_POST['cId'];
-	$sid = $_POST['sId'];
+	$id = $_POST['aId'];
 	$active = $_POST['aActive'];
 	// tạo biến reActive  => xử lý đổi lại giá trị kích hoặt, nếu = 1 thì đổi lại 0, tương tự 0 -> 1
 	$reActive = 1;
 
 	if($active == 1) {
-		$query2 = "UPDATE service SET active = 0 WHERE id = {$sid}";
+		$query = "UPDATE trip SET active = 0 WHERE id = {$id}";
 		$reActive = 0;
 	}else{
-		$query2 = "UPDATE service SET active = 1 WHERE id = {$sid}";
+		$query = "UPDATE trip SET active = 1 WHERE id = {$id}";
 	}
-	$result2 = $mysqli->query($query2);
-	if($result2){
+	$result = $mysqli->query($query);
+	if($result){
 ?>
-<a href="javascript:void(0)" onclick="return getActive(<?php echo $sid;  ?>,<?php echo $cid?>, <?php echo $reActive?>)" >
+<a href="javascript:void(0)" onclick="return getActive(<?php echo $id;  ?>, <?php echo $reActive?>)" >
 	<?php
 		if($active == 1) {
 	?>

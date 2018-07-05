@@ -4,45 +4,86 @@
             <div class="cell-xs-3 cell-sm-4 cell-md-4">
               <h5 class="text-regular text-primary" style="text-align:center">Trợ giúp</h5>
               <!-- List-->
-              <ul style="text-align:center;padding: 20px" class="list list-0 p text-small-15 offset-top-10 offset-md-top-20">
-                <li>
-                  Hot line:0901841841
-                </li>
-                <li>
-                  Chi nhánh Đà Nẵng: 476A Trưng Nữ Vương, Quận Hải Châu, Thành Phố Đà Nẵng
-                </li>
-                <li>
-                  Chi nhánh Quảng Ngãi: 450 Nguyễn Văn Linh, Phường Trương Quang Trọng, Thành Phố Quảng Ngãi
-                </li>
-              </ul>
+              <table style="margin:20px;color: white" class="text-small-15 offset-top-10 offset-md-top-20">
+                <tr style="height:40px">
+                  <th width="50%">
+                    Hot line:
+                  </th>
+                  <td>0901841841</td>
+                </tr>
+                <tr style="height:40px">
+                  <th>
+                    Chi nhánh Đà Nẵng:
+                  </th>
+                  <td> - 476A Trưng Nữ Vương, Quận Hải Châu, Thành Phố Đà Nẵng</td>
+                </tr>
+                <tr>
+                  <th>
+                    Chi nhánh Quảng Ngãi:
+                  </th>
+                  <td> - 450 Nguyễn Văn Linh, Phường Trương Quang Trọng, Thành Phố Quảng Ngãi</td>
+                </tr>
+              </table>
             </div>
             <div class="cell-xs-5 cell-sm-5 cell-md-4 offset-top-35 offset-xs-top-0">
-              <h5 class="text-regular text-primary" style="text-align:center">Truy cập nhanh</h5>
+              <h5 class="text-regular text-primary" style="text-align:center">Bản đồ</h5>
               <!-- List-->
-              <ul class="list list-0 p text-small-15 offset-top-10 offset-md-top-20">
-                <li>
-                  <a href="#" class="text-white"></a>
-                </li>
-                <li>
-                  <a href="#" class="text-white"></a>
-                </li>
-                <li>
-                  <a href="#" class="text-white"></a>
-                </li>
-                <li>
-                  <a href="#" class="text-white"></a>
-                </li>
-                <li>
-                  <a href="#" class="text-white"></a>
-                </li>
-                <li>
-                  <a href="#" class="text-white"></a>
-                </li>
-              </ul>
+              <div class="list list-0 p text-small-15 offset-top-10 offset-md-top-20">
+                <div id="map"></div>
+                      <style>
+                        #map {
+                          height: 300px;
+                          border: 3px solid 333;
+                        }
+                      </style>
+                      <script>
+                        function initMap() {
+                          var uluru = { lat: 15.150824, lng: 108.796897 };
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 17,
+                            center: uluru
+                          });
+                          var contentString = '<div id="content">' +
+                            '<div id="siteNotice">' +
+                            '</div>' +
+                            '<b id="firstHeading" class="firstHeading">450 Nguyễn Văn Linh, Phường Trương Quang Trọng, Thành Phố Quảng Ngãi</b>' +
+                            '<div id="bodyContent">' +
+                            '<p>Đây là địa chỉ của tôi </p>'
+                          '</div>' +
+                            '</div>';
+                    
+                          var infowindow = new google.maps.InfoWindow({
+                            content: contentString,
+                            maxWidth: 200
+                          });
+                    
+                          var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map,
+                            title: 'Uluru (Ayers RocK)',
+                            draggable: true,
+                            animation: google.maps.Animation.DROP
+                          });
+                          marker.addListener('click', function () {
+                            infowindow.open(map, marker);
+                          });
+                          marker.addListener('click', toggleBounce);
+                          function toggleBounce() {
+                            if (marker.getAnimation() !== null) {
+                              marker.setAnimation(null);
+                            } else {
+                              marker.setAnimation(google.maps.Animation.BOUNCE);
+                            }
+                          }
+                        }
+                      </script>
+                      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0c3onWCNTgztTwLF6E0K9bxuK65cHSkI&callback=initMap">
+                      </script>
+              </div>
             </div>
             <div class="cell-sm-5 cell-md-4 offset-top-35 offset-md-top-0 text-xs-center text-sm-left">
               <p class="text-small-14 text-pale-sky" style="text-align:center">
-                <span class="text-white">hoangphuc</span> &#169;
+                <span class="text-white">hoangphuc car</span> &#169;
                 <span id="copyright-year"></span> &#124;
                 <a href="privacy.html" class="text-pale-sky">social network</a>
               </p>
@@ -51,7 +92,7 @@
                 <li class="text-center">
                   <a href="https://join.skype.com/invite/MUqGzmOs0SRh" class="icon icon-sm icon-circle icon-bordered fa fa-skype icon-transparent"></a>
                 </li>
-                <li class="text-center">
+                <li class=  "text-center">
                   <a href="mailto:travelhoangphuc@gmail.com" class="icon icon-sm icon-circle icon-bordered fa fa-google icon-transparent"></a>
                 </li>
                 <li class="text-center">

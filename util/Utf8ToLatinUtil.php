@@ -26,7 +26,6 @@ function utf8ToLatin($text) {
 		$text = str_replace($uni[$i],$chars[$i],$text);
 	}
 	
-	$text = str_replace(' ', '-', $text);
 	$text = strtolower($text);
 	
 	return $text;

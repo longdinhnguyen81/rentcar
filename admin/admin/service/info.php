@@ -28,29 +28,17 @@
 <?php
     if(isset($_GET['sid'])){
         $sid  = $_GET['sid'];
-    }else{
-        header('location:/admin/admin/service/index.php');
-    }
         $query = "SELECT *,service.id as se_id, service.active as sactive FROM service 
-        INNER JOIN users
-        ON service.user_id = users.id 
         INNER JOIN car
         ON service.car_id = car.id WHERE service.id = {$sid} 
         ORDER BY service.id DESC LIMIT 5";
         $result = $mysqli->query($query);
-        $count  = mysqli_num_rows($result);
-        if($count == 0){
-            echo "Không có admin cần tìm";
-            die();
-        }
-        $i = 0;
-        while($arService = mysqli_fetch_assoc($result)){
+        $arService = mysqli_fetch_assoc($result);
             $sid           = $arService['se_id'];
             $cid           = $arService['car_id'];
             $name_car      = $arService['name'];
-            $phone         = $arService['phone'];
+            $tel           = $arService['tel'];
             $type          = $arService['type'];
-            $name_user     = $arService['username'];
             $date_from     = $arService['date_from'];
             $date_to       = $arService['date_to'];
             $datefrom1   = date("d-m-Y", strtotime($date_from));
@@ -58,86 +46,114 @@
             $time_from     = $arService['time_from'].'h';
             $time_to       = $arService['time_to'].'h';
             $address_from  = $arService['address_car'];
+            $sactive       = $arService['sactive']; 
+    }elseif(isset($_GET['tid'])){
+        $tid  = $_GET['tid'];
+        $query = "SELECT *,service.id as se_id, service.active as sactive FROM service 
+        INNER JOIN trip
+        ON service.trip_id = trip.id WHERE service.id = {$tid}";
+        $result = $mysqli->query($query);
+        $arService = mysqli_fetch_assoc($result);
+            $sid           = $arService['se_id'];
+            $cid           = $arService['car_id'];
+            $name_car      = $arService['name'];
+            $tel           = $arService['tel'];
+            $type          = $arService['type'];
+            $date_from     = $arService['date_from'];
+            $datefrom1   = date("d-m-Y", strtotime($date_from));
+            $time_from     = $arService['time_from'].'h';
+            $address_from  = $arService['address_from'];
             $address_to    = $arService['address_to'];
             $sactive       = $arService['sactive'];
-            $i++;
-            if ($i % 2 == 0) { $cl = "even"; } else { $cl = "odd"; }
-        }
+                
+    }else{
+        header('location:/admin/admin/service/index.php');
+    }
 ?>
                                     <tr>
-                                        <th>Tên trường</th>
-                                        <td>Nội dung</td>
+                                        <th>Tên trường:</th>
+                                        <td>Nội dung:</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="<?php echo $cl?> gradeX">
-                                        <th>ID</th>
+                                    <tr class="odd gradeX">
+                                        <th>ID:</th>
                                         <td><?php echo $sid?></td>
                                     </tr>
                                 </tbody>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Tên người dùng</th>
-                                        <td><?php echo $name_user?></td>
+                                        <th>Số điện thoại:</th>
+                                        <td><?php echo $tel;?></td>
                                     </tr>
                                 </tbody>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Số điện thoại</th>
-                                        <td><?php echo $phone;?></td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr class="<?php echo $cl?> gradeX">
-                                        <th>Kiểu đi</th>
+                                        <th>Kiểu đi:</th>
                                         <td><?php echo $type;?></td>
                                     </tr>
                                 </tbody>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Tên xe</th>
+                                        <th>Tên xe:</th>
                                         <td><?php echo $name_car;?></td>
                                     </tr>
                                 </tbody>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Thời gian đi</th>
+                                        <th>Thời gian đi:</th>
                                         <td><?php echo $time_from?></td>
                                     </tr>
                                 </tbody>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Ngày đi</th>
-                                        <td><?php echo $time_to?></td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr class="<?php echo $cl?> gradeX">
-                                        <th>Thời gian trả</th>
+                                        <th>Ngày đi:</th>
                                         <td><?php echo $datefrom1?></td>
                                     </tr>
                                 </tbody>
+<?php 
+    if(isset($time_to)){
+?>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Ngày trả</th>
+                                        <th>Thời gian trả:</th>
+                                        <td><?php echo $time_to?></td>
+                                    </tr>
+                                </tbody>
+<?php
+    }
+    if(isset($dateto1)){
+?>
+                                <tbody>
+                                    <tr class="<?php echo $cl?> gradeX">
+                                        <th>Ngày trả:</th>
                                         <td><?php echo $dateto1?></td>
                                     </tr>
                                 </tbody>
+<?php
+    }
+?>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Địa điểm đi</th>
+                                        <th>Địa điểm đi:</th>
                                         <td><?php echo $address_from?></td>
                                     </tr>
                                 </tbody>
+<?php 
+    if(isset($address_to)){
+?>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Địa điểm đến nếu có</th>
+                                        <th>Địa điểm đến:</th>
                                         <td><?php echo $address_to?></td>
                                     </tr>
                                 </tbody>
+<?php
+    }
+?>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Phản hồi</th>
+                                        <th>Phản hồi:</th>
                                         <td class="center" id="result-<?php echo $sid?>">
                                             <a href="javascript:void(0)" onclick="return getActive(<?php echo $sid?>,<?php echo $cid ?>,<?php echo $sactive?>)">
                                         <?php
@@ -156,7 +172,7 @@
                                 </tbody>
                                 <tbody>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <th>Chức năng</th>
+                                        <th>Chức năng:</th>
                                         <td><a onclick="return confirm('Bạn có muốn xóa không?')" href="/admin/admin/service/del.php?sid=<?php echo $sid; ?>" title="" class="btn btn-danger"><i class="fa fa-pencil"></i> Xóa</a></td>
                                     </tr>
                                 </tbody>

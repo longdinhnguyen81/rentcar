@@ -2,6 +2,8 @@
   ob_start();
   session_start();
   require_once $_SERVER['DOCUMENT_ROOT'] . '/util/getDateTime.php';
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/util/ConstantUtil.php';
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/util/utf8ToLatinUtil.php';
   require_once $_SERVER['DOCUMENT_ROOT'] . '/util/DBConnectionUtil.php';
 ?>
 <!DOCTYPE html>
@@ -16,15 +18,15 @@
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/templates/car/images/favicon.png" type="image/x-icon">
   <!-- Stylesheets-->
   <link rel="stylesheet" href="/templates/car/css/style.css">
-  <script src="/templates/car/js/jquery.min.js"></script>
-  <!--[if lt IE 10]>
+  <script src="/templates/car/js/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 10] -->
 </head>
 
 <body>
-  <!-- Page-->
+  <!--= Page-->
   <div class="page text-center">
     <!-- Page Header-->
     <header class="page-header">
@@ -44,7 +46,7 @@
                 <!-- RD Navbar Brand-->
                 <div class="rd-navbar-brand">
                   <a href="/" class="brand-name">
-                    <img src="/templates/car/images/logo-274x66.png" width="274" height="66" alt="" class="img-responsive veil reveal-lg-inline-block">
+                    <img src="/templates/car/images/logo2.png" width="274" height="66px" alt="" class="img-responsive veil reveal-lg-inline-block">
                     <p></p>
                   </a>
                 </div>
@@ -55,49 +57,26 @@
                       <a href="/">Trang Chủ</a>
                     </li>
                     <li>
-                      <a href="about.html">Giới Thiệu</a>
+                      <a href="">Giới Thiệu</a>
                     </li>
                     <li>
-                      <a href="locations.html">Câu hỏi thường gặp</a>
+                      <a href="">Câu hỏi thường gặp</a>
                       <!-- RD Navbar Dropdown-->
                       <ul class="rd-navbar-dropdown">
                         <li>
-                          <a href="#">Hà Nội</a>
+                          <a href="#">Tại sao nên đặt xe tại Hoàng Phúc Car?</a>
                         </li>
                         <li>
-                          <a href="#">Việt Nam</a>
+                          <a href="#">Giờ hoạt động của văn phòng?</a>
                         </li>
                         <li>
-                          <a href="#">Đà Nẵng</a>
+                          <a href="#">Những dịch vụ công ty đang hoạt động là gì?</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="contacts.html">Liên Hệ</a>
+                      <a href="">Liên Hệ</a>
                     </li>
-<?php
-  if(isset($_SESSION['fullname'])){
-    $fullname = $_SESSION['fullname'];
-
-?>
-                    <li style="margin: 0 50px;">
-                      <a style="color:#f64512"><?php echo $fullname;?></a>
-                      <!-- RD Navbar Dropdown-->
-                      <ul class="rd-navbar-dropdown">
-                        <li>
-                          <a href="/templates/car/auth/logout.php">Đăng xuất</a>
-                        </li>
-                      </ul>
-                    </li>
-<?php
-  }else{
-?>
-                    <li style="margin: 0 50px">
-                      <a href="/templates/car/auth/login.php">Login</a>
-                    </li>
-<?php
-  }
-?>
                   </ul>
                 </div>
               </div>
@@ -116,8 +95,8 @@
           <div class="shell text-left">
             <div class="range range-xs-center range-sm-left">
               <div class="cell-sm-10">
-                <h1 class="h1">Nhà Xe
-                  <br class="veil reveal-lg-inline-block">Hoàng Phúc</h1>
+                <h1 class="h1">Hoàng Phúc
+                  <br class="veil reveal-lg-inline-block">Car</h1>
                 <p class="text-big-25 offset-md-top-50 inset-lg-right-30 thep">Cho thuê hợp đồng tự lái, cho thuê xe 4-7-16 và trên 25 chỗ.
                   <br> Hợp đồng tham quan du lịch Cưới Hỏi.
                   <br> Đưa đón khách tuyến Quảng Ngãi - Sân bay Chu Lai - Đà Nẵng và ngược lại.

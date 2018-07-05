@@ -1,7 +1,7 @@
 ﻿<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/admin/inc/header.php'; ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/admin/inc/leftbar.php'; ?>
 <?php
-    $queryTSD  = "SELECT COUNT(*) AS TSD FROM car";
+    $queryTSD  = "SELECT COUNT(*) AS TSD FROM trip";
     $resultTSD = $mysqli->query($queryTSD);
     $arTmp      = mysqli_fetch_assoc($resultTSD);
     //  Tổng số dòng
@@ -23,7 +23,7 @@
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h2>Quản lý tin tức</h2>
+                <h2>Quản lý chuyến đi</h2>
             </div>
         </div>
         <!-- /. ROW  -->
@@ -42,7 +42,7 @@
                         <div class="table-responsive">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <a href="/admin/admin/car/add.php?hid=3" class="btn btn-success btn-md">Thêm</a>
+                                    <a href="/admin/admin/trip/add.php?hid=3" class="btn btn-success btn-md">Thêm</a>
                                 </div>
                                 <div class="col-sm-6" style="text-align: right;">
                                     <form method="post" action="" >
@@ -56,10 +56,11 @@
                                     <tr>
                                         <th style="cursor: pointer;text-align:center" onclick="sortTable(0)">ID</th>
                                         <th style="cursor: pointer;text-align:center" onclick="sortTable(1)">Tên xe</th>
-                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(2)" width="150px">Địa điểm hiện tại</th>
-                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(3)" width="120px">Trạng thái</th>
-                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(4)" width="120px">Giá tiền / Giờ</th>
-                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(5)" width="100px">Hình ảnh</th>
+                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(2)" width="150px">Địa điểm đi:</th>
+                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(3)" width="120px">Địa điểm đến:</th>
+                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(4)" width="120px">Giá tiền:</th>
+                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(5)" width="100px">Hình ảnh:</th>
+                                        <th style="cursor: pointer;text-align:center" onclick="sortTable(5)" width="100px">Trạng thái:</th>
                                         <th style="cursor: pointer;text-align:center" width="160px">Chức năng</th>
                                     </tr>
                                 </thead>
@@ -69,12 +70,12 @@
                                     if($_POST['name'] != ""){
                                         $car = $_POST['name'];
                                     }else{
-                                        echo "Bạn chưa nhập tên tin tức";
+                                        echo "Bạn chưa nhập tên xe";
                                         die();
                                     }
-                                    $query = "SELECT * FROM car WHERE name LIKE '%{$car}%' ORDER BY id DESC";
+                                    $query = "SELECT * FROM trip WHERE name LIKE '%{$car}%' ORDER BY id DESC";
                                 }else{
-                                    $query = "SELECT * FROM car ORDER BY id DESC LIMIT {$offset},{$row_count}";
+                                    $query = "SELECT * FROM trip ORDER BY id DESC LIMIT {$offset},{$row_count}";
                                 }
                             ?>
                             <?php
@@ -84,26 +85,30 @@
                                         echo "<h3 style='color:#666;text-align:center'>Không có xe cần tìm</h3>";
                                     }
                                     while ($arCar  = mysqli_fetch_assoc($result)) {
-                                        $cid       = $arCar['id'];
+                                        $tid       = $arCar['id'];
                                         $name      = $arCar['name'];
                                         $picture   = $arCar['picture'];
                                         $urlpic    = '/templates/car/images/' . $picture;
-                                        $preview   = $arCar['preview'];
+                                        $ad_from   = $arCar['address_from'];
+                                        $ad_to     = $arCar['address_to'];
                                         $active    = $arCar['active'];
-                                        $cost      = $arCar['hourcost'];
-                                        $address   = $arCar['address'];
+                                        $cost      = $arCar['cost'];
                                 ?>
                                 <?php 
                                     $i = 0;
                                     if ($i % 2 == 0) { $cl = "even"; } else { $cl = "odd"; }
                                 ?>
                                     <tr class="<?php echo $cl?> gradeX">
-                                        <td style="text-align:center"><?php echo $cid;?></td>
+                                        <td style="text-align:center"><?php echo $tid;?></td>
                                         <td style="text-align:center"><?php echo $name;?></td>
-                                        <td style="text-align:center"><?php echo $address;
-                                        echo $offset.$row_count?></td>
-                                        <td style="text-align:center" class="center" id="result-<?php echo $cid?>">
-                                            <a href="javascript:void(0)" onclick="return getActive(<?php echo $cid?>,<?php echo $active?>)">
+                                        <td style="text-align:center"><?php echo $ad_from;?></td>
+                                        <td style="text-align:center"><?php echo $ad_to;?></td>
+                                        <td style="text-align:center"><?php echo number_format($cost,0,',','.') . ' VNĐ'; ?></td>
+                                        <td style="text-align:center" class="center">
+                                            <img src="<?php echo $urlpic?>" alt="" height="60px" width="90px" />      
+                                        </td>
+                                        <td style="text-align:center" class="center" id="result-<?php echo $tid?>">
+                                            <a href="javascript:void(0)" onclick="return getActive(<?php echo $tid?>,<?php echo $active?>)">
                                         <?php
                                             if($active == 0){
                                         ?>
@@ -120,13 +125,9 @@
                                             }
                                         ?></a>
                                         </td>
-                                        <td style="text-align:center"><?php echo number_format($cost,0,',','.'); ?></td>
-                                        <td style="text-align:center" class="center">
-                                            <img src="<?php echo $urlpic?>" alt="" height="60px" width="90px" />      
-                                        </td>
                                         <td style="text-align:center;margin-top:50px" class="center">
-                                            <a href="/admin/admin/car/edit.php?hid=3&cid=<?php echo $cid; ?>" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>
-                                            <a onclick="return confirm('Bạn có muốn xóa không?')" href="/admin/admin/car/del.php?cid=<?php echo $cid; ?>" title="" class="btn btn-danger"><i class="fa fa-pencil"></i> Xóa</a>
+                                            <a href="/admin/admin/trip/edit.php?hid=3&tid=<?php echo $tid; ?>" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>
+                                            <a onclick="return confirm('Bạn có muốn xóa không?')" href="/admin/admin/trip/del.php?tid=<?php echo $tid; ?>&pic=<?php echo $picture?>" title="" class="btn btn-danger"><i class="fa fa-pencil"></i> Xóa</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -139,7 +140,7 @@
                             <div><img src="/templates/admin/img/deactive.png" /></a>: Xe đang bận/bảo trì</div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="dataTables_info" id="dataTables-example_info" style="margin-top:27px">Hiển thị từ 1 đến 5 của <?php echo $tongDong?> truyện</div>
+                                    <div class="dataTables_info" id="dataTables-example_info" style="margin-top:27px">Hiển thị từ 1 đến 5 của <?php echo $tongDong?> xe</div>
                                 </div>
                                 <div class="col-sm-6" style="text-align: right;">
                                     <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
@@ -151,7 +152,7 @@
                                                         $active = "active";
                                                     }
                                             ?>
-                                            <li class="paginate_button <?php echo $active;?>" aria-controls="dataTables-example" tabindex="0"><a href="/admin/admin/car/index.php?hid=3&page=<?php echo $i ?>&hid=3"><?php echo $i ?></a></li>
+                                            <li class="paginate_button <?php echo $active;?>" aria-controls="dataTables-example" tabindex="0"><a href="/admin/admin/trip/index.php?hid=3&page=<?php echo $i ?>"><?php echo $i ?></a></li>
                                             <?php
                                             }
                                             ?>
@@ -247,17 +248,17 @@ function myFunction() {
 </script>
 
 <script>
-    function getActive(cid, active){
+    function getActive(tid, active){
         $.ajax({
-            url: 'xulyCar.php',
+            url: 'xulyTrip.php',
             type: 'POST',
             cache: false,
             data: {
-                aId: cid,
+                aId: tid,
                 aActive: active,
             },
             success: function(data){
-                $('#result-'+cid).html(data);            
+                $('#result-'+tid).html(data);            
             },
             error: function (){
                 alert('Có lỗi xảy ra');

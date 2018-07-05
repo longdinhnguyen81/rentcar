@@ -97,65 +97,65 @@
             </div>
             <div class="box-lg-body section-70 section-md-top-34 section-md-bottom-34 bg-alabaster">
               <div id="slide">
-                  <div class="pipe" style="height: 1438px;background-color: #f0f0f0">
+                  <div class="pipe" style="height: 1158px;background-color: #f0f0f0;margin-top: 80px">
                     <div class="anchor" id="id_anchor"></div>
                     <div class="content" id="id_content">
                       <form style="background-color: white;" action="" method="post">
-                      <div style="border: 3px solid #f0f0f0">
+                      <div style="border: 3px solid #f0f0f0;border-top: none">
                           <h3 style="font-size:30px;text-align:center;padding:20px">Thông tin thuê</h3>
                           <!--Select 2-->
 <?php
   if(isset($_POST['submit'])){
     $tel  = $_POST['tel'];
-    if(isset($_GET['noiden']) &&  $_GET['noiden'] != ""){
-      $noiden = $_GET['noiden'];
-      header("location:/rent.php?cid={$cid}&pickdate={$ngaythue}&renttime={$giothue}&adcar={$noithue}&tel={$tel}&adto={$noiden}");
-      
-    }else{
-      header("location:/rent.php?cid={$cid}&pickdate={$ngaythue}&pickdrop={$ngaytra}&renttime={$giothue}&rentreturn={$giotra}&adcar={$noithue}&tel={$tel}");
-    }
+    $name = $_POST['username'];
+      header("location:/rent.php?cid={$cid}&pickdate={$ngaythue}&pickdrop={$ngaytra}&renttime={$giothue}&rentreturn={$giotra}&adcar={$noithue}&tel={$tel}&name={$name}");
   }
 ?>
                           <div style="padding:10px 10px 15px 0px;height: 85px">
                             <div style="width: 50%;float: left;">
                               <label style="padding:10px 10px 5px 10px;margin-left:10px;display:block;color:#f64512;font-size:18px" name="address-car" class="form-custom-label form-custom-label-outside hehe">Nơi thuê:</label>
-                              <input type="text" readonly required style="font-size:18px;border:none;border-bottom:1px solid #999999;width: 90%;text-align: left;padding-left: 35px;display: inline;margin-left: 15px;margin-bottom:10px;background: url('/templates/car/images/placeholder.png') no-repeat left center;background-size: 30px 30px;color:black" readonly value="<?php echo $noithue?>" >
+                              <input type="text" readonly required style="font-size:18px;border:none;border-bottom:1px solid #999999;width: 90%;text-align: left;padding-left: 35px;display: inline;margin-left: 15px;margin-bottom:10px;background: url('/templates/car/images/placeholder.png') no-repeat left center;background-size: 30px 30px;color:black" readonly value="<?php if($noithue == 'quang ngai'){ echo 'Quảng Ngãi';}else{ echo 'Đà Nẵng';}?>" >
                             </div>
                             <div style="width: 50%;float: left;">
                               <label style="padding:10px 10px 5px 10px;margin-left:10px;display:block;color:#f64512;font-size:18px" name="address-car" class="form-custom-label form-custom-label-outside hehe">Nơi trả:</label>
-                              <input type="text" readonly required style="font-size:18;border:none;border-bottom:1px solid #999999;width: 90%;text-align: left;padding-left: 35px;display: inline;margin-left: 15px;margin-bottom:10px;background: url('/templates/car/images/placeholder.png') no-repeat left center;background-size: 30px 30px;color:black" readonly value="<?php echo $noitra?>" >
+                              <input type="text" readonly required style="font-size:18;border:none;border-bottom:1px solid #999999;width: 90%;text-align: left;padding-left: 35px;display: inline;margin-left: 15px;margin-bottom:10px;background: url('/templates/car/images/placeholder.png') no-repeat left center;background-size: 30px 30px;color:black" readonly value="<?php if($noitra == 'quang ngai'){ echo 'Quảng Ngãi';}else{ echo 'Đà Nẵng';}?>" >
                             </div>
                           </div>
                           <!--Select 2-->
                           <div style="margin-top: 10px">
                             <label style="padding:10px;margin-left:10px;display:block;color:#f64512;font-size:18px" name="address-car" class="form-custom-label form-custom-label-outside hehe">Ngày giờ thuê:</label>
                           
-                               <input name="ngaythue" type="text" name="pickup-date" required style="border:none;border-bottom:1px solid #999999;width: 55%;text-align: right;display: inline;margin-left: 15px;background: url('/templates/car/images/calendar.png') no-repeat left center;font-size:16px;background-size: 30px 30px;color:black" value="<?php echo $ngaythue?>" readonly >
+                               <input name="ngaythue" type="text" name="pickup-date" required style="border:none;border-bottom:1px solid #999999;width: 55%;text-align: right;display: inline;margin-left: 15px;background: url('/templates/car/images/calendar.png') no-repeat left center;font-size:16px;background-size: 30px 30px;color:black" value="<?php echo $ngaythue?>" >
                                
-                               <input name="giothue" type="text" style="border:none;border-bottom:1px solid #999999;font-size:20px;width: 80px;text-align: right;display: inline;margin-left: 20px;background: url('/templates/car/images/clock.png') no-repeat left center;background-size: 30px 30px;color:black" value="<?php echo $giothue.':00'?>" readonly />
+                               <input name="giothue" type="number" style="border:none;border-bottom:1px solid #999999;font-size:20px;width: 80px;text-align: right;display: inline;margin-left: 20px;background: url('/templates/car/images/clock.png') no-repeat left center;background-size: 30px 30px;color:black" value="<?php echo $giothue?>" />
                           </div>    
                           
                           <!--Select 2-->
                           <div>
                             <label style="padding:20px 10px 10px 10px;margin-left:10px;display:block;color:#f64512;font-size:18px" name="address-car" class="form-custom-label form-custom-label-outside hehe">Ngày giờ trả:</label>
                             
-                               <input name="ngaytra" type="text" name="pickup-date" data-time-picker="date" required style="border:none;border-bottom:1px solid #999999;width: 55%;text-align: right;display: inline;margin-left: 15px;background: url('/templates/car/images/calendar.png') no-repeat left center;font-size:16px;background-size: 30px 30px;color:black" value="<?php echo $ngaytra?>" readonly >
+                               <input name="ngaytra" type="text" name="pickup-date" data-time-picker="date" required style="border:none;border-bottom:1px solid #999999;width: 55%;text-align: right;display: inline;margin-left: 15px;background: url('/templates/car/images/calendar.png') no-repeat left center;font-size:16px;background-size: 30px 30px;color:black" value="<?php echo $ngaytra?>" >
                                
-                               <input type="text" name="giotra" value="<?php echo $giotra.':00'?>" style="border:none;border-bottom:1px solid #999999;font-size:20px;width: 80px;text-align: right;display: inline;margin-left: 20px;background: url('/templates/car/images/clock.png') no-repeat left center;background-size: 30px 30px;color:black" readonly />
+                               <input type="number" name="giotra" value="<?php echo $giotra?>" style="border:none;border-bottom:1px solid #999999;font-size:20px;width: 80px;text-align: right;display: inline;margin-left: 20px;background: url('/templates/car/images/clock.png') no-repeat left center;background-size: 30px 30px;color:black" />
                           </div>
                           <div>
                             <label style="padding:30px 10px 10px 10px;margin-left:10px;display:block;color:#f64512;font-size:18px" name="address-car" class="form-custom-label form-custom-label-outside hehe">Giá tiền/Giờ: <span style="color:#666"><?php echo number_format($hcost,0,',','.') . ' VNĐ'?></span></label>
                             <label style="padding:10px 10px 10px 10px;margin-left:10px;display:block;color:#f64512;font-size:18px" name="address-car" class="form-custom-label form-custom-label-outside hehe">Tổng tiền: <span style="color:#666"><?php echo number_format($tongtien,0,',','.') . ' VNĐ'?></span></label>
-                            <label style="font-size:18px;margin-left:10px;padding:10px 10px 10px 10px;color:#f64512">Số điện thoại:</label>
-                            <input type="tel" placeholder="Nhập số điện thoại" required style="float:right;width:150px;margin-right:10px" name="tel">
+                            <div>
+                              <label style="font-size:18px;margin-left:10px;padding:10px 10px 10px 10px;color:#f64512">Họ và tên:</label>
+                              <input type="tel" placeholder="Nhập họ và tên" required style="float:right;width:150px;margin-right:10px" name="username">
+                            </div>
+                            <div>
+                              <label style="font-size:18px;margin-left:10px;padding:10px 10px 10px 10px;color:#f64512">Số điện thoại:</label>
+                              <input type="tel" placeholder="Nhập số điện thoại" required style="float:right;width:150px;margin-right:10px" name="tel">
+                            </div>
                           </div>
-                            <button href="/" type="submit" name="submit" class="btn btn-primary offset-top-20 offset-md-top-45 hehe" style="margin: 10px 30%" />Đặt ngay</button>
+                            <button href="/" type="submit" name="submit" class="btn btn-primary offset-top-20 offset-md-top-45 hehe" style="margin: 10px 30%">Đặt ngay</button>
                           </div>
-                        </div>
-                      </form>
+                        </form>
+                      </div>
                     </div>
                   </div>
-
                 </div>
                 <div class="range range-xs-center offset-top-60 offset-lg-top-70">
 
@@ -265,26 +265,5 @@
         <!-- We Work-->
       </main>
       <!-- Page Footer-->
-    <script>
-      $(".content").hide()
-    $(document).ready(function ($) {
-      if ($(".content").length > 0) {
-        $(window).scroll(function () {
-          var e = $(window).scrollTop();
-          if (e > 900 && e < 1800) {
-            $(".content").show()
-          }
-          else {
-            $(".content").hide()
-          }
-        });
-        $(".content").click(function () {
-          $('body,html').animate({
-            scrollTop: 0
-          })
-        })
-      }
-    });
-    </script>
 
   <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/car/inc/footer.php'?>

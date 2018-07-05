@@ -2,7 +2,8 @@
 <!-- /. WRAPPER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- JQUERY SCRIPTS -->
-<script src="/templates/admin/js/jquery-1.10.2.js"></script>
+<script src="/templates/admin/js/jquery.min.js"></script>
+<script src="/templates/admin/js/jquery-1.11.1.min.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
 <script src="/templates/admin/js/bootstrap.min.js"></script>
 <!-- METISMENU SCRIPTS -->
@@ -11,6 +12,8 @@
 <script src="/templates/admin/js/custom.js"></script>
 <!-- CKEDITO -->
 </body>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	 CKEDITOR.replace('content',
 {

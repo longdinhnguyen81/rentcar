@@ -9,7 +9,7 @@
                 $active = "class='active-menu'";
             }elseif($_GET['hid'] == 2 || isset($_GET['cid'])){
                 $active2 = "class='active-menu'";
-            }elseif($_GET['hid'] == 3 || isset($_GET['sid'])){
+            }elseif($_GET['hid'] == 3){
                 $active3 = "class='active-menu'";
             }elseif($_GET['hid'] == 4 || isset($_GET['id'])){
                 $active4 = "class='active-menu'";
@@ -26,13 +26,13 @@
                 <a <?php if(isset($active2)){ echo $active2; } ?> href="/admin/admin/car/index.php?hid=2"><i class="fa fa-bar-chart-o fa-3x"></i> Quản lý xe</a>
             </li>
             <li>
-                <a <?php if(isset($active3)){ echo $active3; } ?> href="/admin/admin/admin/index.php?hid=3"><i class="fa fa-qrcode fa-3x"></i> Quản lý admin</a>
+                <a <?php if(isset($active3)){ echo $active3; } ?> href="/admin/admin/trip/index.php?hid=3"><i class="fa fa-refresh fa-3x"></i> Quản lý chuyến đi</a>
             </li>
             <li>
-                <a <?php if(isset($active4)){ echo $active4; } ?> href="/admin/admin/users/index.php?hid=4"><i class="fa fa-sitemap fa-3x"></i> Quản lý người dùng</a>
+                <a <?php if(isset($active4)){ echo $active4; } ?> href="/admin/admin/service/index.php?hid=4"><i class="fa fa-sitemap fa-3x"></i> Quản lý dịch vụ</a>
             </li>
             <li>
-                <a <?php if(isset($active5)){ echo $active5; } ?> href="/admin/admin/service/index.php?hid=5"><i class="fa fa-refresh fa-3x"></i> Quản lý chuyến đi hiện tại</a>
+                <a <?php if(isset($active5)){ echo $active5; } ?> href="/admin/admin/admin/index.php?hid=5"><i class="fa fa-qrcode fa-3x"></i> Quản lý admin</a>
             </li>
         </ul>
     </div>

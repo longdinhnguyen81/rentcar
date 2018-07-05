@@ -56,7 +56,13 @@
                                         <th style="cursor: pointer;text-align:center" onclick="sortTable(1)">Tên admin</th>
                                         <th style="cursor: pointer;text-align:center" onclick="sortTable(2)">Tài khoản</th>
                                         <th style="cursor: pointer;text-align:center" onclick="sortTable(3)">Quyền hạn</th>
+<?php
+  if($_SESSION['active'] == 1){
+?>
                                         <th width="160px">Chức năng</th>
+<?php
+  }
+?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,10 +104,16 @@
                                                 echo "Admin";
                                             }
                                         ?></td>
+<?php
+  if($_SESSION['active'] == 1){
+?>
                                         <td class="center">
                                             <a href="/admin/admin/admin/edit.php?aid=<?php echo $aid;?>&hid=3" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>
                                             <a onclick="return confirm('Bạn có muốn xóa không?')" href="/admin/admin/admin/del.php?aid=<?php echo $aid;?>" title="" class="btn btn-danger"><i class="fa fa-pencil"></i> Xóa</a>
                                         </td>
+<?php
+  }
+?>
                                     </tr>
                                     <?php
                                         }

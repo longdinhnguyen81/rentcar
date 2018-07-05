@@ -205,9 +205,21 @@
                                         <label>Giá tiền/ Ngày:</label>
                                         <input type="number" name="datecost" placeholder="VNĐ" class="form-control" value="<?php echo $edcost?>" />
                                     </div>
+                                    <?php
+                                        $qn = '';
+                                        $dn = '';
+                                        if($eaddress == 'Quảng Ngãi'){
+                                            $qn = 'selected="SELECTED"';
+                                        }else{
+                                            $dn = 'selected="SELECTED"';
+                                        }
+                                    ?>
                                     <div class="form-group">
                                         <label>Địa điểm hiện tại:</label>
-                                        <input type="text" name="address" class="form-control" value="<?php echo $eaddress;?>" />
+                                        <select name="address">
+                                            <option <?php echo $qn;?> value="Quảng Ngãi">Quảng Ngãi</option>
+                                            <option <?php echo $dn;?> value="Đà Nẵng">Đà Nẵng</option>
+                                        </select>
                                     </div>
                                     <div>
                                         <label>Hình ảnh:</label>

@@ -385,7 +385,7 @@ body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.55556;
-  color: #aeaeae;
+  color: #666;
   background-color: #fff;
 }
 
@@ -751,7 +751,11 @@ ol ol {
   padding-left: 0;
   list-style: none;
 }
-
+.page .icon-sm.icon-circle {
+  width: 75px;
+  height: 75px;
+  line-height: 71px;
+}
 .list-inline {
   padding-left: 0;
   list-style: none;
@@ -7876,7 +7880,6 @@ html *:last-child {
 
 [class*="cell-"] {
   padding-left: 15px;
-  padding-right: 15px;
 }
 
 html.lt-ie-10 * + .range,
@@ -10108,7 +10111,7 @@ small,
 @media (min-width: 768px) {
   .text-big-25 {
     font-size: 20px;
-    line-height: 35px;
+    line-height: 30px;
   }
 }
 
@@ -10762,11 +10765,14 @@ fieldset[disabled] .btn-primary {
 }
 
 .icon-transparent.icon-bordered {
-  border-color: #3d4048;
+  border-color: #f64512;
 }
 
 a.icon-default, a.icon-transparent {
   transition: .3s all ease;
+  width: 75px;
+  height: 75px;
+  line-height: 71px;
 }
 
 a.icon-default:hover, a.icon-transparent:hover {
@@ -14290,29 +14296,7 @@ textarea.form-control {
 .form-output.success {
   color: #7bc440;
 }
-
-.radio .radio-custom,
-.radio-inline .radio-custom,
-.checkbox .checkbox-custom,
-.checkbox-inline .checkbox-custom {
-  opacity: 0;
-}
-
-.radio .radio-custom, .radio .radio-custom-dummy,
-.radio-inline .radio-custom,
-.radio-inline .radio-custom-dummy,
-.checkbox .checkbox-custom,
-.checkbox .checkbox-custom-dummy,
-.checkbox-inline .checkbox-custom,
-.checkbox-inline .checkbox-custom-dummy {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  margin-left: -30px;
-  margin-top: 7px;
-  outline: none;
-  cursor: pointer;
-}
+z
 
 .radio .radio-custom-dummy,
 .radio-inline .radio-custom-dummy,
@@ -16667,7 +16651,7 @@ textarea.form-control {
     padding-bottom: 75px;
   }
   .section-md-90 {
-    padding-top: 90px;
+    padding-top: 40px;
     padding-bottom: 90px;
   }
   .section-md-100 {
@@ -18366,8 +18350,8 @@ html .page .offset-top-5 {
 }
 
 html .page .offset-top-10 {
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 html .page .offset-top-14 {
@@ -18440,7 +18424,7 @@ html .page .offset-top-178 {
 
 @media (min-width: 480px) {
   html .page .offset-xs-top-0 {
-    margin-top: 0;
+    margin-top: 5px;
   }
   html .page .offset-xs-top-5 {
     margin-top: 5px;
@@ -25049,40 +25033,34 @@ font-size: 15px;
     .pipe{
       width:300px;
       float:left;
-    }
-    
-    .pipe .anchor{
-      width:300px;
-      float:left;
-      background:#00aadd;
+      top: 100px;
+      width: 320px;
+      padding:10px;
     }
     
     .pipe .content{
       width: 300px;
       top: 100px;
-      position: fixed;
       z-index: 10000;
-    .forcar{
-      display: inline;
     }
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #909;
+    color:    #999;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #909;
+   color:    #999;
    opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #909;
+   color:    #999;
    opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #909;
+   color:    #999;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-   color:    #909;
+   color:    #999;
 }
 
 ::placeholder { /* Most modern browsers support this now. */
-   color:    #909;
+   color:    #999;
 }
